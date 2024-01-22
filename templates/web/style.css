@@ -1,0 +1,24 @@
+body {
+    background-color: #222222;
+    color: white;
+    font-family: Arial;
+}
+
+.page_contents {
+    display: flex;
+    margin: auto;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    font-size: 2em;
+}
+
+#chatgpt_output {
+    font-family: consolas;
+    color: green;
+    font-weight: bold;
+}
