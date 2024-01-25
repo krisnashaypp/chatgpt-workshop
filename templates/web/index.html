@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ChatGPT Application</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="page_contents">
-        <p>This is a ChatGPT example!</p>
-        <p>This is what ChatGPT has to say:</p>
-        <p id="chatgpt_output"></p>
+      <p>This is a ChatGPT example!</p>
+      <p>This is what ChatGPT has to say:</p>
+      <div class="quiz-input-container">
+        <div>
+          <label for="">Make quiz about: <input type="text" /></label>
+          <label for="">Num of questions: <input type="number" /></label>
+        </div>
+
+        <button>Quiz it up</button>
+      </div>
+
+      <div class="quiz-container">
+        
+        <h4 class="quiz-question"></h4>
+        <div class="quiz-answers"></div>
+      </div>
+
+      <p id="chatgpt_output"></p>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
