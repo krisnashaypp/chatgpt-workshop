@@ -44,29 +44,6 @@ const chatgptFunction = {
   }
 };
 
-const exampleInput = "Make a quiz about: Hats, the number of questions should be 3";
-
-const exampleOutput = {
-  "question": "What is the name of the type of hat often associated with cowboys?",
-  "answers": [
-    {
-      "text": "Fedora",
-      "isCorrect": false
-    },
-    {
-      "text": "Stetson",
-      "isCorrect": true
-    },
-    {
-      "text": "Baret",
-      "isCorrect": false
-    },
-    {
-      "text": "Beanie",
-      "isCorrect": false
-    }
-  ]
-}
 
 const btn = document.querySelector(".quiz-input-container button");
 
@@ -119,11 +96,14 @@ function createQuestionDiv(question, answers) {
     answerButtonsDiv.appendChild(answerBtn);
 
     answerBtn.addEventListener("click", () => {
+      const answerIsCorrectHeader = questionDiv.querySelector("h3");
       if (answer.isCorrect) {
-        document.querySelector("#chatgpt_output").innerHTML = "Correct!";
+        answerIsCorrectHeader.innerHTML = "Correct!";
       } else {
-        document.querySelector("#chatgpt_output").innerHTML = "Incorrect!";
+        answerIsCorrectHeader.innerHTML = "Incorrect!";
       }
+     
+      //disable all btns after 1 is clicked
       const answerButtons = answerButtonsDiv.querySelectorAll("button");
       answerButtons.forEach(button => {
         button.disabled = true;
@@ -131,6 +111,8 @@ function createQuestionDiv(question, answers) {
       });
     });
   }
+
+  questionDiv.appendChild(document.createElement("h3"));
   
   questionDiv.appendChild(answerButtonsDiv);
 
@@ -141,8 +123,6 @@ btn.addEventListener("click", async () => {
   const inputQuestion = document.querySelectorAll(".quiz-input-container input")[0];
   const inputNumber = document.querySelectorAll(".quiz-input-container input")[1];
   const quizQuestionContainer = document.querySelector(".quiz-container");
-  const quizQuestionHeader = document.querySelector(".quiz-question");
-  const quizQuestionAnswers = document.querySelector(".quiz-answers");
   try {
     const response = await queryOpenAI(`Make a quiz about: ${inputQuestion.value} number of questions must be ${inputNumber.value ?? 3}`);
     const responseFormatted = JSON.parse(response);
